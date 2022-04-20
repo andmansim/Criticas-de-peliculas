@@ -26,3 +26,7 @@ max = df['Valoración película'].max()
 print('El valor máximo es: ' + str(max))
 min = df['Valoración película'].min()
 print('El valor mínimo es: ' + str(min))
+
+#Fórmula para la campana de Gauss
+x = np.arange(min, max, 0.01)
+f = 1/(desviacion_tipica * np.sqrt(2*df.pi)) * np.exp(-(x - media) ** 2/(2 * varianza))
