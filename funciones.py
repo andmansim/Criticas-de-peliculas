@@ -20,3 +20,9 @@ print('La varianza es: ' + str(varianza))
 desviacion_tipica = varianza ** (1/2)
 desviacion_tipica = round(desviacion_tipica, 2)
 print('La desviación típica es: ' + str(desviacion_tipica))
+
+#máximo y mínimo
+max = df['Valoración película'].max()
+print('El valor máximo es: ' + str(max))
+min = df['Valoración película'].min()
+print('El valor mínimo es: ' + str(min))
