@@ -1,3 +1,4 @@
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -29,4 +30,11 @@ print('El valor mínimo es: ' + str(min))
 
 #Fórmula para la campana de Gauss
 x = np.arange(min, max, 0.01)
-f = 1/(desviacion_tipica * np.sqrt(2*df.pi)) * np.exp(-(x - media) ** 2/(2 * varianza))
+f = 1/(desviacion_tipica * np.sqrt(2*np.pi)) * np.exp(-(x - media) ** 2/(2 * varianza))
+
+#Pintamos gráfica
+
+plt.style.use('seaborn')
+plt.figure(figsize = (6,6))
+plt.plot(x, f, color = 'black', linestyle = 'dashed')
+plt.show()
