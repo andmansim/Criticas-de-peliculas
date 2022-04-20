@@ -34,7 +34,12 @@ f = 1/(desviacion_tipica * np.sqrt(2*np.pi)) * np.exp(-(x - media) ** 2/(2 * var
 
 #Pintamos gráfica
 
-plt.style.use('seaborn')
+'''plt.style.use('seaborn')
 plt.figure(figsize = (6,6))
 plt.plot(x, f, color = 'black', linestyle = 'dashed')
+plt.show()
+'''
+#Histograma
+axis = df.plot.bar(x='Valoración película', rot = 0)
+print(axis)
 plt.show()
