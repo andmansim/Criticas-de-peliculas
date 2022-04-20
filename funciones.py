@@ -1,4 +1,5 @@
 
+from typing import Counter
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -28,6 +29,22 @@ print('El valor máximo es: ' + str(max))
 min = df['Valoración película'].min()
 print('El valor mínimo es: ' + str(min))
 
+#mediana
+mediana = df['Valoración película'].median()
+mediana = df['Número de votos'].sum() / 2
+print(mediana)
+
+#moda
+moda = df['Número de votos'].max()
+#fnfnfnf
+print('La moda es : ' + str(moda))
+
+#Q2
+Q2 = mediana
+print('El 50% de los votos tiene un valor inferior a ' + str(Q2))
+#Q1
+
+
 #Fórmula para la campana de Gauss
 x = np.arange(min, max, 0.01)
 f = 1/(desviacion_tipica * np.sqrt(2*np.pi)) * np.exp(-(x - media) ** 2/(2 * varianza))
@@ -41,5 +58,4 @@ plt.show()
 '''
 #Histograma
 axis = df.plot.bar(x='Valoración película', rot = 0)
-print(axis)
 plt.show()
