@@ -7,5 +7,5 @@ df = pd.DataFrame({'Valoración película': np.array([5, 4, 3, 2, 1, 0]), 'Núme
 print(df)
 #media
 media = ((df['Valoración película'] * df['Número de votos']).sum())/(df['Número de votos'].sum())
-print(media)
+print(round(media, 2))
 
