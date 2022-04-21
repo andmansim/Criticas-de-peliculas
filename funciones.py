@@ -35,9 +35,14 @@ mediana = df['Número de votos'].sum() / 2
 print(mediana)
 
 #moda
-moda = df['Número de votos'].max()
-#fnfnfnf
-print('La moda es : ' + str(moda))
+a = 1
+for i in df['Número de votos']:
+    if i == df['Número de votos'].max():
+        b = a
+    else: 
+        a = a + 1
+moda = df.iloc[b-1,0]
+print('La moda es: ' + str(moda))
 
 #Q2
 Q2 = mediana
