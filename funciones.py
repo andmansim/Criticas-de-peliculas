@@ -30,7 +30,7 @@ min = df['Valoración película'].min()
 print('El valor mínimo es: ' + str(min))
 
 #mediana
-mediana = df['Valoración película'].median()
+
 mediana = df['Número de votos'].sum() / 2
 print(mediana)
 
@@ -44,8 +44,20 @@ for i in df['Número de votos']:
 moda = df.iloc[b-1,0]
 print('La moda es: ' + str(moda))
 
+
 #Q2
+suma = df['Número de votos'].cumsum()
+print(suma)
+def cuartil_1(suma):
+    q = (suma * 1)/4
+    for i in df['Número de votos']:
+        if q < i:
+            Q = i
+    
+print(df['Valoración película'].sort_index())
+print(df['Número de votos'])
 Q2 = mediana
+
 print('El 50% de los votos tiene un valor inferior a ' + str(Q2))
 #Q1
 
