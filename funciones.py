@@ -46,16 +46,19 @@ print('La moda es: ' + str(moda))
 
 
 #Q2
-suma = df['Número de votos'].cumsum()
+ordenado = df.sort_values(by='Valoración película')
+suma = ordenado['Número de votos'].cumsum()
 print(suma)
 def cuartil_1(suma):
-    q = (suma * 1)/4
-    for i in df['Número de votos']:
+    q = (df['Número de votos'].sum() * 1)/4
+    print(q)
+    for i in suma:
         if q < i:
             Q = i
-    
-print(df['Valoración película'].sort_index())
-print(df['Número de votos'])
+        return Q
+
+Q1 =cuartil_1(suma)
+print(Q1)
 Q2 = mediana
 
 print('El 50% de los votos tiene un valor inferior a ' + str(Q2))
