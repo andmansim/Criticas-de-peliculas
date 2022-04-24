@@ -64,9 +64,22 @@ q1 = cuartil_1(suma)
 Q1 = ordenado.iloc[q1 - 1, 0]
 print(Q1)
 print('El 25% de los votos tiene un valor inferior a ' + str(Q1))
-Q2 = mediana
+#Q2
+def cuartil_2(suma):
+    e = 1
+    q = (df['Número de votos'].sum() * 2)/4
+    print(q)
+    for i in suma:
+        if q < i:
+            
+            return e
+        else:
+            e = e + 1
+
+q2 = cuartil_2(suma)
+Q2 = ordenado.iloc[q2 - 1, 0]
 print('El 50% de los votos tiene un valor inferior a ' + str(Q2))
-#Q1
+
 
 
 #Fórmula para la campana de Gauss
