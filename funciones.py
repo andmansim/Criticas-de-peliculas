@@ -30,32 +30,17 @@ print('El valor mínimo es: ' + str(min))
 
 #mediana
 def calculo_mediana():
-    n = df['Valoración película'].count()
-    #sumar = df['Número de votos'].sum()
-    if (n % 2) == 0:
-        print('Los valores son pares')
-        par = True
-    else:
-        print('Los valores son impares')
-        par = False
-  
-    if par:
-        d = int(n/2)
-        print(d)
-        valor = df.iloc[d - 1,0]
-        print(valor)
-        valor1 = df.iloc[d, 0]
-        print(valor1)
-        m = (valor + valor1)/2
-        return m
-    else: 
-        d1 = int((n + 1)/2)
-        m1 = df.iloc[d1, 0]
-        return m1
-
+    ordenado = df.sort_values(by='Valoración película')
+    suma = ordenado['Número de votos'].cumsum()
+    q = df['Número de votos'].sum() / 2
+    e = 1
+    for i in suma:
+        if q < i:
+            return ordenado.iloc[e - 1, 0]
+        else:
+            e = e + 1
 
 mediana = calculo_mediana()    
-#mediana = df['Número de votos'].sum() / 2
 print('La mediana es:' + str(mediana))
 
 #moda
@@ -70,28 +55,21 @@ print('La moda es: ' + str(moda))
 
 def cuartiles(suma):
     e1 = 1
-    e2 = 1
     e3 = 1
     q1 = (df['Número de votos'].sum() * 1)/4
-    q2 = (df['Número de votos'].sum() * 2)/4
     q3 = (df['Número de votos'].sum() * 3)/4
-    print(q1)
+    
     for i in suma:
         if q1 < i:
             pass
         else:
             e1 = e1 + 1
         
-        if q2 < i:
-            pass
-        else:
-            e2 = e2 + 1 
-
         if q3 < i:
             pass
         else:
             e3 = e3 + 1 
-    return [e1, e2, e3]
+    return [e1, e3]
 
 
 ordenado = df.sort_values(by='Valoración película')
@@ -100,15 +78,14 @@ Q = cuartiles(suma)
 
 #Q1
 Q1 = ordenado.iloc[Q[0] - 1, 0]
-print(Q1)
 print('El 25% de los votos tiene un valor inferior a ' + str(Q1))
 
 #Q2
-Q2 = ordenado.iloc[Q[1] - 1, 0]
+Q2 = mediana
 print('El 50% de los votos tiene un valor inferior a ' + str(Q2))
 
 #Q3
-Q3 = ordenado.iloc[Q[2] - 1, 0]
+Q3 = ordenado.iloc[Q[1] - 1, 0]
 print('El 75% de los votos tiene un valor inferior a ' + str(Q3))
 
 
