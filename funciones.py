@@ -29,9 +29,34 @@ min = df['Valoración película'].min()
 print('El valor mínimo es: ' + str(min))
 
 #mediana
+def calculo_mediana():
+    n = df['Valoración película'].count()
+    #sumar = df['Número de votos'].sum()
+    if (n % 2) == 0:
+        print('Los valores son pares')
+        par = True
+    else:
+        print('Los valores son impares')
+        par = False
+  
+    if par:
+        d = int(n/2)
+        print(d)
+        valor = df.iloc[d - 1,0]
+        print(valor)
+        valor1 = df.iloc[d, 0]
+        print(valor1)
+        m = (valor + valor1)/2
+        return m
+    else: 
+        d1 = int((n + 1)/2)
+        m1 = df.iloc[d1, 0]
+        return m1
 
-mediana = df['Número de votos'].sum() / 2
-print(mediana)
+
+mediana = calculo_mediana()    
+#mediana = df['Número de votos'].sum() / 2
+print('La mediana es:' + str(mediana))
 
 #moda
 a = 1
