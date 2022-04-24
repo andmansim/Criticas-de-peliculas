@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 #creamos un DataFrame
 df = pd.DataFrame({'Valoración película': np.array([5, 4, 3, 2, 1, 0]), 'Número de votos': np.array([40, 99, 145, 133, 96, 40])})
 print(df)
@@ -44,56 +45,47 @@ for i in df['Número de votos']:
 moda = df.iloc[b-1,0]
 print('La moda es: ' + str(moda))
 
+def cuartiles(suma):
+    e1 = 1
+    e2 = 1
+    e3 = 1
+    q1 = (df['Número de votos'].sum() * 1)/4
+    q2 = (df['Número de votos'].sum() * 2)/4
+    q3 = (df['Número de votos'].sum() * 3)/4
+    print(q1)
+    for i in suma:
+        if q1 < i:
+            pass
+        else:
+            e1 = e1 + 1
+        
+        if q2 < i:
+            pass
+        else:
+            e2 = e2 + 1 
 
-#Q1
+        if q3 < i:
+            pass
+        else:
+            e3 = e3 + 1 
+    return [e1, e2, e3]
+
+
 ordenado = df.sort_values(by='Valoración película')
 suma = ordenado['Número de votos'].cumsum()
-print(suma)
-def cuartil_1(suma):
-    e = 1
-    q = (df['Número de votos'].sum() * 1)/4
-    print(q)
-    for i in suma:
-        if q < i:
-            
-            return e
-        else:
-            e = e + 1
+Q = cuartiles(suma)
 
-q1 = cuartil_1(suma)
-Q1 = ordenado.iloc[q1 - 1, 0]
+#Q1
+Q1 = ordenado.iloc[Q[0] - 1, 0]
 print(Q1)
 print('El 25% de los votos tiene un valor inferior a ' + str(Q1))
-#Q2
-def cuartil_2(suma):
-    e = 1
-    q = (df['Número de votos'].sum() * 2)/4
-    print(q)
-    for i in suma:
-        if q < i:
-            
-            return e
-        else:
-            e = e + 1
 
-q2 = cuartil_2(suma)
-Q2 = ordenado.iloc[q2 - 1, 0]
+#Q2
+Q2 = ordenado.iloc[Q[1] - 1, 0]
 print('El 50% de los votos tiene un valor inferior a ' + str(Q2))
 
 #Q3
-def cuartil_3(suma):
-    e = 1
-    q = (df['Número de votos'].sum() * 3)/4
-    print(q)
-    for i in suma:
-        if q < i:
-            
-            return e
-        else:
-            e = e + 1
-
-q3 = cuartil_3(suma)
-Q3 = ordenado.iloc[q3 - 1, 0]
+Q3 = ordenado.iloc[Q[2] - 1, 0]
 print('El 75% de los votos tiene un valor inferior a ' + str(Q3))
 
 
