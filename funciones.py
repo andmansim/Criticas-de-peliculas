@@ -80,6 +80,21 @@ q2 = cuartil_2(suma)
 Q2 = ordenado.iloc[q2 - 1, 0]
 print('El 50% de los votos tiene un valor inferior a ' + str(Q2))
 
+#Q3
+def cuartil_3(suma):
+    e = 1
+    q = (df['Número de votos'].sum() * 3)/4
+    print(q)
+    for i in suma:
+        if q < i:
+            
+            return e
+        else:
+            e = e + 1
+
+q3 = cuartil_3(suma)
+Q3 = ordenado.iloc[q3 - 1, 0]
+print('El 75% de los votos tiene un valor inferior a ' + str(Q3))
 
 
 #Fórmula para la campana de Gauss
