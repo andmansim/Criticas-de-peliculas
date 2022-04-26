@@ -3,11 +3,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # abrimos DatasSet
-df = pd.read_csv('peliculas.CSV', delimiter= ',', encoding = 'UTF-8')
+df = pd.read_csv('pelicula.csv', delimiter = ',', encoding='UTF-8')
 print(df)
 
 #creamos un DataFrame
-df_new = pd.DataFrame({'Valoración película': df['vote_count'], 'Número de votos': df['vote_average']})
+df_new = pd.DataFrame({'Valoracion pelicula': df['vote_count'], 'Numero de votos': df['vote_average']})
 print(df_new)
 
 #media
