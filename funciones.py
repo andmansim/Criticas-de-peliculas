@@ -53,10 +53,7 @@ print('El valor máximo es: ' + str(max))
 min = df['Valoración película'].min()
 print('El valor mínimo es: ' + str(min))
 
-
-
-
-
+#Cuartiles
 def cuartiles(suma):
     e1 = 1
     e3 = 1
