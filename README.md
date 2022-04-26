@@ -23,3 +23,48 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 ```
+# Crear DataFrame
+Tenemos un DataSet con el ID, título, descripción, idioma, número de votos y valoración de las películas, pero a nosotros solo nos importa la valoración y el número de votos. Entonces, primero leeremos el fichero csv, mediante pandas:
+```
+df = pd.read_csv('pelicula.csv', delimiter = ';', encoding='UTF-8')
+```
+Para leerlo usamos la función read_csv() y dentro indicamos el nombre del fichero CSV, su delimitador, es decir, su formato de separación y el formato para transformarlo a Python.
+Si lo imprimimos obtenemos:
+```
+<<<
+        Id                           title  ... Numero-de-votos Valoracion-pelicula
+0        0                        Ad Astra  ...            2853                 5.9
+1        1                       Bloodshot  ...            1349                 7.2
+2        2               Bad Boys for Life  ...            2530                 7.1
+3        3                         Ant-Man  ...           13611                 7.1
+4        4  Percy Jackson: Sea of Monsters  ...            3542                 5.9
+...    ...                             ...  ...             ...                 ...
+9782  9995                           Cargo  ...             225                 5.9
+9783  9996                  The Good Night  ...              67                 5.6
+9784  9997              The World Is Yours  ...             234                 7.1
+9785  9998             The Grand Seduction  ...             169                 6.7
+9786  9999        Woochi: The Demon Slayer  ...              78                 6.7
+>>>
+```
+Ahora vamos a crear un DataFrame con solo los datos que nos interesan, así que hacemos lo siguiente:
+```
+df_new = pd.DataFrame({'Valoracion-pelicula': df['Valoracion-pelicula'], 'Numero-de-votos': df['Numero-de-votos']})
+```
+Recogeremos en una nueva variable el DataFrame, donde le pasamos un diccionario con el nombre de las columnas que necesitamos y sus valores, que accedemos a ellos mediante df[‘nombre de la columna’].
+Y obtenemos:
+```
+<<<
+      Valoracion-pelicula  Numero-de-votos
+0                     5.9             2853
+1                     7.2             1349
+2                     7.1             2530
+3                     7.1            13611
+4                     5.9             3542
+...                   ...              ...
+9782                  5.9              225
+9783                  5.6               67
+9784                  7.1              234
+9785                  6.7              169
+9786                  6.7               78
+>>>
+```
