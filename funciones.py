@@ -2,10 +2,13 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
+# abrimos DatasSet
+df = pd.read_csv('peliculas.CSV', delimiter= ',', encoding = 'UTF-8')
+print(df)
 
 #creamos un DataFrame
-df = pd.DataFrame({'Valoración película': np.array([5, 4, 3, 2, 1, 0]), 'Número de votos': np.array([40, 99, 145, 133, 96, 40])})
-print(df)
+df_new = pd.DataFrame({'Valoración película': df['vote_count'], 'Número de votos': df['vote_average']})
+print(df_new)
 
 #media
 media = ((df['Valoración película'] * df['Número de votos']).sum())/(df['Número de votos'].sum())
