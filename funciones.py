@@ -12,6 +12,21 @@ media = ((df['Valoración película'] * df['Número de votos']).sum())/(df['Núm
 media = round(media, 2)
 print('La media es: ' + str(media))
 
+#mediana
+def calculo_mediana():
+    ordenado = df.sort_values(by='Valoración película')
+    suma = ordenado['Número de votos'].cumsum()
+    q = df['Número de votos'].sum() / 2
+    e = 1
+    for i in suma:
+        if q < i:
+            return ordenado.iloc[e - 1, 0]
+        else:
+            e = e + 1
+
+mediana = calculo_mediana()    
+print('La mediana es:' + str(mediana))
+
 #varianza
 varianza = ((df['Número de votos'] * ((df['Valoración película'] - media)**2)).sum()/(df['Número de votos'].sum()))
 varianza = round(varianza, 2)
@@ -28,20 +43,7 @@ print('El valor máximo es: ' + str(max))
 min = df['Valoración película'].min()
 print('El valor mínimo es: ' + str(min))
 
-#mediana
-def calculo_mediana():
-    ordenado = df.sort_values(by='Valoración película')
-    suma = ordenado['Número de votos'].cumsum()
-    q = df['Número de votos'].sum() / 2
-    e = 1
-    for i in suma:
-        if q < i:
-            return ordenado.iloc[e - 1, 0]
-        else:
-            e = e + 1
 
-mediana = calculo_mediana()    
-print('La mediana es:' + str(mediana))
 
 #moda
 a = 1
