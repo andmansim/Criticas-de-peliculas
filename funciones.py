@@ -27,6 +27,16 @@ def calculo_mediana():
 mediana = calculo_mediana()    
 print('La mediana es:' + str(mediana))
 
+#moda
+a = 1
+for i in df['Número de votos']:
+    if i == df['Número de votos'].max():
+        b = a
+    else: 
+        a = a + 1
+moda = df.iloc[b-1,0]
+print('La moda es: ' + str(moda))
+
 #varianza
 varianza = ((df['Número de votos'] * ((df['Valoración película'] - media)**2)).sum()/(df['Número de votos'].sum()))
 varianza = round(varianza, 2)
@@ -45,15 +55,7 @@ print('El valor mínimo es: ' + str(min))
 
 
 
-#moda
-a = 1
-for i in df['Número de votos']:
-    if i == df['Número de votos'].max():
-        b = a
-    else: 
-        a = a + 1
-moda = df.iloc[b-1,0]
-print('La moda es: ' + str(moda))
+
 
 def cuartiles(suma):
     e1 = 1
