@@ -68,3 +68,44 @@ Y obtenemos:
 9786                  6.7               78
 >>>
 ```
+# Media aritmética
+La media aritmética es el valor promedio de un conjunto de datos numéricos, en nuestro caso el número de votos, y se calcula sumando todos los conjuntos de valores y dividiéndolo entre el número total de valores.  
+Pasos: 
+
+1º Multiplicamos cada valoración de las películas por el número de votos que ha tenido cada una de ellas. Sumamos todos los resultados y los dividimos entre la suma total de los datos, en este caso los 10000.
+
+2º Redondeamos al segundo decimal, mediante la función round(), dentro le indicamos el valor a redondear y los decimales.
+```
+media = ((df['Valoracion-pelicula'] * df['Numero-de-votos']).sum())/(df['Numero-de-votos'].sum())
+media = round(media, 2)
+print('La media es: ' + str(media))
+```
+# Mediana
+La mediana es el valor que ocupa el lugar central de todos los datos cuando estos están ordenados de menor a mayor.
+
+1º Hacemos una función que se va a encargar de ordenar las valoraciones de las películas, mediante la función .sort_values(by=columna), también nos mueve todas las columnas relacionadas con sus valores.
+
+2º Tras ordenarla sumamos cada fila, es decir, sumaremos el primero con el anterior, al no haber sería sumarle cero, el segundo con el primero y ese valor se quedaría en la fila dos. Tras hacerlo con todos quien estaría en la última fila sería el número total de datos, es decir, los 10000. A todo esto, se le llama suma acumulativa, donde vamos sumando valores y al final obtenemos el conjunto entero. En vez de calcularlo a mano, usaremos .cumsum(), que nos creará una columna con dichos valores acumulados.
+
+3º Como hemos explicado anteriormente, la mediana es el valor que ocupa la posición central, así que dividiremos el número total de datos entre 2. 
+
+4º Haremos un bucle for donde irá mirando si el valor del medio es menor que alguno de los acumulados, si es así, el primer número mayor que el corresponde a la mediana. Pero claro, nosotros sabemos el valor acumulado que corresponde a la mediana y la fila que se encuentra, pero no la valoración que le corresponde. Para eso está la variable e, que se encarga de contar cuántos datos son menores que nuestro centro.
+
+5º Esta función nos devolverá la valoración correspondiente en dicha fila. Accederemos a las filas mediante la función .iloc[número de fila, columna]
+
+```
+#mediana
+def calculo_mediana():
+    ordenado = df.sort_values(by='Valoracion-pelicula')
+    suma = ordenado['Numero-de-votos'].cumsum()
+    q = df['Numero-de-votos'].sum() / 2
+    e = 1
+    for i in suma:
+        if q < i:
+            return ordenado.iloc[e - 1, 0]
+        else:
+            e = e + 1
+
+mediana = calculo_mediana()    
+print('La mediana es:' + str(mediana))
+```
