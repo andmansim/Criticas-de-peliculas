@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 # abrimos DatasSet
 df = pd.read_csv('pelicula.csv', delimiter = ';', encoding='UTF-8')
 print(df)
-
+df1 = df
 #creamos un DataFrame
-df_new = pd.DataFrame({'Valoracion-pelicula': df['Valoracion-pelicula'], 'Numero-de-votos': df['Numero-de-votos']})
-print(df_new)
+df = pd.DataFrame({'Valoracion-pelicula': df['Valoracion-pelicula'], 'Numero-de-votos': df['Numero-de-votos']})
+print(df)
 
 #media
 media = ((df['Valoracion-pelicula'] * df['Numero-de-votos']).sum())/(df['Numero-de-votos'].sum())
