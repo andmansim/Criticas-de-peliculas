@@ -72,12 +72,16 @@ def representacion(df, desviacion_tipica, max, min, media, varianza):
     f = 1/(desviacion_tipica * np.sqrt(2*np.pi)) * np.exp(-(x - media) ** 2/(2 * varianza))
     f1 = (np.exp((-1/2) * ((x-media)/desviacion_tipica)**2))/np.sqrt(2 * np.pi * x * desviacion_tipica)
     
-    plt.subplot(1,1,1)
-    fig = plt.hist(df['Valoracion-pelicula'])
+    ax1 = plt.subplot()
+    ax2 = ax1.twinx()
+    ax1.plot(fig1)
+    ax2.plot(x, f1, color = 'pink', linestyle = 'dashed')
+    fig1= plt.hist(df['Valoracion-pelicula'])
     plt.axvline(media, color='red', linestyle='dashed', linewidth=1,label = str(media))
     plt.legend(loc='upper right')
-    b =  plt.plot(x, f1, color = 'red', linestyle = 'dashed')
-    a =  plt.plot(x, f, color = 'black', linestyle = 'dashed')
+
+    #b =  plt.plot(x, f1, color = 'pink', linestyle = 'dashed')
+    #a =  plt.plot(x, f, color = 'black', linestyle = 'dashed')
     
     '''  plt.subplot(1,1,1)
     plt.style.use('seaborn')'''
