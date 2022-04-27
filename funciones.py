@@ -11,7 +11,11 @@ df = pd.DataFrame({'Valoracion-pelicula': df['Valoracion-pelicula'], 'Numero-de-
 print(df)
 
 #media
-media = ((df['Valoracion-pelicula'] * df['Numero-de-votos']).sum())/(df['Numero-de-votos'].sum())
+def calculomedia(v_p, n_v):
+    m = ((v_p * n_v).sum())/(n_v.sum())
+    return m
+media = calculomedia(df['Valoracion-pelicula'], df['Numero-de-votos'])
+#media = ((df['Valoracion-pelicula'] * df['Numero-de-votos']).sum())/(df['Numero-de-votos'].sum())
 media = round(media, 2)
 print('La media es: ' + str(media))
 
@@ -31,17 +35,24 @@ mediana = calculo_mediana()
 print('La mediana es:' + str(mediana))
 
 #moda
-a = 1
-for i in df['Numero-de-votos']:
-    if i == df['Numero-de-votos'].max():
-        b = a
-    else: 
-        a = a + 1
+def calculomoda(n_v):
+    a = 1
+    for i in n_v:
+        if i == n_v.max():
+            b = a
+            return b
+        else: 
+            a = a + 1
+b = calculomoda(df['Numero-de-votos'])
 moda = df.iloc[b-1,0]
 print('La moda es: ' + str(moda))
 
 #varianza
-varianza = ((df['Numero-de-votos'] * ((df['Valoracion-pelicula'] - media)**2)).sum()/(df['Numero-de-votos'].sum()))
+def varianza(v_p, n_v,m):
+    v = ((n_v * ((v_p - media)**2)).sum()/(n_v.sum()))
+    return v
+varianza = varianza(df['Valoracion-pelicula'], df['Numero-de-votos'], media)
+#varianza = ((df['Numero-de-votos'] * ((df['Valoracion-pelicula'] - media)**2)).sum()/(df['Numero-de-votos'].sum()))
 varianza = round(varianza, 2)
 print('La varianza es: ' + str(varianza))
 
