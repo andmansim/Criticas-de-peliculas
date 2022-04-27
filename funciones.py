@@ -68,8 +68,8 @@ plt.show()
 '''
 #Histograma
 def representacion(df, desviacion_tipica, max, min, media, varianza):
-    plt.subplot(3,3,1)
-    plt.hist('Histograma')
+    plt.subplot(1,1,1)
+    plt.hist(df['Valoracion-pelicula'])
     
     '''#plt.subplot(2,2,1)
     plt.style.use('seaborn')
