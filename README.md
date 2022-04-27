@@ -108,7 +108,7 @@ La mediana es el valor que ocupa el lugar central de todos los datos cuando esto
 
 4º Haremos un bucle for donde irá mirando si el valor del medio es menor que alguno de los acumulados, si es así, el primer número mayor que el corresponde a la mediana. Pero claro, nosotros sabemos el valor acumulado que corresponde a la mediana y la fila que se encuentra, pero no la valoración que le corresponde. Para eso está la variable e, que se encarga de contar cuántos datos son menores que nuestro centro.
 
-5º Esta función nos devolverá la valoración correspondiente en dicha fila. Accederemos a las filas mediante la función .iloc[número de fila, columna].
+5º Esta función nos devolverá la valoración correspondiente en dicha fila. Accederemos a las filas mediante la función .iloc[número de fila, columna]
 
 ```
 #mediana
@@ -146,13 +146,13 @@ moda = df.iloc[b-1,0]
 print('La moda es: ' + str(moda))
 ```
 # Varianza y desviación típica
-La varianza es una medida de dispersión que representa cuanto varían los datos respecto a la media. Se calcula de la siguiente manera: ∑(valores(valoración películas)- media)〗^2/n. A cada valor de la valoración se le resta la media y se le eleva al cuadrado. Después se suman todos ellos y los dividimos entre el número total de valores.
+La varianza es una medida de dispersión que representa cuanto varían los datos respecto a la media. Se calcula de la siguiente manera: ∑(valores(valoración películas)- media)^2/n. A cada valor de la valoración se le resta la media y se le eleva al cuadrado. Después se suman todos ellos y los dividimos entre el número total de valores.
 La desviación típica es lo mismo que la varianza, pero en vez de ser en valores tan globales, es respecto a algunos en concreto. Para calcularla solo hay que hacer la raíz de la varianza. 
 Pasos: 
 
 1º Es aplicar la fórmula y le debemos multiplicar a cada valoración el número de votos que tiene. Esto se realizará en la función varianza, tiene de parámetros las columnas número de votos, valoración películas y la media, y nos devolverá el valor calculado.
 
-2º Redondeamos al segundo decimal.
+2º Redondeamos al segundo decimal
 ```
 # varianza
 #Funciones
@@ -236,7 +236,6 @@ print('El 50% de los votos tiene un valor inferior a ' + str(Q2))
 Q3 = ordenado.iloc[Q[1] - 1, 0]
 print('El 75% de los votos tiene un valor inferior a ' + str(Q3))
 ```
-
 # Gráfica
 Usaremos la función representacion con los parámetros: df, desviación típica, máximo, mínimo, media y varianza, para pintar un histograma de los datos, junto con la campana de Gauss.
 Pasos:
@@ -290,5 +289,6 @@ El 50% de los votos tiene un valor inferior a 6.9
 El 75% de los votos tiene un valor inferior a 7.5
 >>>
 ```
+
 Y la siguiente gráfica:
 ![peliculas](peliculas.jpg)
