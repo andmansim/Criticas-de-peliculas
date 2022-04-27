@@ -31,7 +31,7 @@ import matplotlib.pyplot as plt
 ```
 
 # Crear DataFrame
-Tenemos un DataSet con el ID, título, descripción, idioma, número de votos y valoración de las películas, pero a nosotros solo nos importa la valoración y el número de votos. Entonces, primero leeremos el fichero csv, mediante pandas:
+Tenemos un DataSet con el ID, título, descripción, idioma, número de votos y valoración de las películas, pero a nosotros solo nos importa la valoración y el número de votos. Entonces, primero leeremos el fichero csv, mediante pandas, para cargarlo en un dataframe:
 ```
 #Main
 df = pd.read_csv('pelicula.csv', delimiter = ';', encoding='UTF-8')
