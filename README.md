@@ -102,11 +102,11 @@ La mediana es el valor que ocupa el lugar central de todos los datos cuando esto
 
 1º Hacemos una función que se va a encargar de ordenar las valoraciones de las películas, mediante la función .sort_values(by=columna), también nos mueve todas las columnas relacionadas con sus valores. A esta función le pasaremos el DataFrame mediante el parámetro df.
 
-2º Tras ordenarla sumamos cada fila, es decir, sumaremos el primero con el anterior, al no haber sería sumarle cero, el segundo con el primero y ese valor se quedaría en la fila dos. Tras hacerlo con todos quien estaría en la última fila sería el número total de datos, es decir, los 10000. A todo esto, se le llama suma acumulativa, donde vamos sumando valores y al final obtenemos el conjunto entero. En vez de calcularlo a mano, usaremos .cumsum(), que nos creará una columna con dichos valores acumulados.
+2º Tras ordenarla sumamos los números de votos de cada fila con el anterior, de tal forma que vamos poniendo el valor acumulado. Tras hacerlo con todos quien estaría en la última fila sería el número total de datos, es decir, los 10000. A todo esto, se le llama suma acumulativa, donde vamos sumando valores y al final obtenemos el conjunto entero. En vez de calcularlo a mano, usaremos .cumsum(), que nos creará una columna con dichos valores acumulados.
 
-3º Como hemos explicado anteriormente, la mediana es el valor que ocupa la posición central, así que dividiremos el número total de datos entre 2. 
+3º Como hemos explicado anteriormente, la mediana es el valor que ocupa la posición central, así que dividiremos el número total de datos entre 2 y recogemos su valor en q. 
 
-4º Haremos un bucle for donde irá mirando si el valor del medio es menor que alguno de los acumulados, si es así, el primer número mayor que el corresponde a la mediana. Pero claro, nosotros sabemos el valor acumulado que corresponde a la mediana y la fila que se encuentra, pero no la valoración que le corresponde. Para eso está la variable e, que se encarga de contar cuántos datos son menores que nuestro centro.
+4º Haremos un bucle for donde irá mirando si el valor de q es menor que alguno de los acumulados, si es así, el primer número mayor que q, corresponde a la mediana. Pero claro, nosotros sabemos el valor acumulado que corresponde a la mediana y la fila en la que se encuentra, pero no la valoración que le corresponde. Para eso está la variable e, que se encarga de contar cuántos datos son menores que q.
 
 5º Esta función nos devolverá la valoración correspondiente en dicha fila. Accederemos a las filas mediante la función .iloc[número de fila, columna]
 
@@ -128,7 +128,7 @@ mediana = calculo_mediana(df)
 print('La mediana es:' + str(mediana))
 ```
 # Moda
-La moda, es el valor que más se repite de todos nuestros datos. Para calcularlo vamos a ver el máximo de número de votos y hallarnos su valoración correspondiente, seguiremos el mismo procedimiento que la del cálculo de la mediana. Esto lo realizaremos mediante la función calculomoda, que le pasaremos los datos de la columna número de votos.
+La moda, es el valor que más se repite de todos nuestros datos. Para calcularlo vamos a ver el máximo de número de votos y hallarnos su valoración correspondiente, seguiremos el mismo procedimiento que para el cálculo de la mediana. Esto lo realizaremos mediante la función calculomoda, que le pasaremos los datos de la columna número de votos.
 ```
 #moda
 #Funciones
@@ -147,10 +147,11 @@ print('La moda es: ' + str(moda))
 ```
 # Varianza y desviación típica
 La varianza es una medida de dispersión que representa cuanto varían los datos respecto a la media. Se calcula de la siguiente manera: ∑(valores(valoración películas)- media)^2/n. A cada valor de la valoración se le resta la media y se le eleva al cuadrado. Después se suman todos ellos y los dividimos entre el número total de valores.
-La desviación típica es lo mismo que la varianza, pero en vez de ser en valores tan globales, es respecto a algunos en concreto. Para calcularla solo hay que hacer la raíz de la varianza. 
+La desviación típica mide lo mismo que la varianza. Para calcularla solo hay que hacer la raíz de la varianza. 
+
 Pasos: 
 
-1º Es aplicar la fórmula y le debemos multiplicar a cada valoración el número de votos que tiene. Esto se realizará en la función varianza, tiene de parámetros las columnas número de votos, valoración películas y la media, y nos devolverá el valor calculado.
+1º Es aplicar la fórmula y le debemos multiplicar a cada valoración el número de votos que tiene. Esto se realizará en la función varianza, tiene de parámetros, las columnas: número de votos, valoración películas y la media, y nos devolverá el valor calculado.
 
 2º Redondeamos al segundo decimal
 ```
