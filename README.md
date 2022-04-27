@@ -48,9 +48,9 @@ Si lo imprimimos obtenemos:
 ```
 Ahora vamos a crear un DataFrame con solo los datos que nos interesan, así que hacemos lo siguiente:
 ```
-df_new = pd.DataFrame({'Valoracion-pelicula': df['Valoracion-pelicula'], 'Numero-de-votos': df['Numero-de-votos']})
+df = pd.DataFrame({'Valoracion-pelicula': df['Valoracion-pelicula'], 'Numero-de-votos': df['Numero-de-votos']})
 ```
-Recogeremos en una nueva variable el DataFrame, donde le pasamos un diccionario con el nombre de las columnas que necesitamos y sus valores, que accedemos a ellos mediante df[‘nombre de la columna’].
+Sustituiremos el valor de nuestra variable df por el nuevo DataFrame, donde le pasamos un diccionario con el nombre de las columnas que necesitamos y sus valores, que accedemos a ellos mediante df[‘nombre de la columna’].
 Y obtenemos:
 ```
 <<<
@@ -143,4 +143,82 @@ desviacion_tipica = varianza ** (1/2)
 desviacion_tipica = round(desviacion_tipica, 2)
 print('La desviación típica es: ' + str(desviacion_tipica))
 ```
+# Máximos y mínimos
+Para calcular el valor máximo y el mínimo, tan solo debemos usar las funciones .max() y .min(), respectivamente, de los datos de las valoraciones.
+```
+#máximo y mínimo
+max = df['Valoracion-pelicula'].max()
+print('El valor máximo es: ' + str(max))
+min = df['Valoracion-pelicula'].min()
+print('El valor mínimo es: ' + str(min))
+```
+# Cuartiles
+Los cuartiles son valores que dividen un conjunto de datos en cuatro partes iguales. Tenemos el primer cuartil, indica que el 25% de los datos es menor o igual al valor. El segundo cuartil equivale a la mediana, indica el 50% de los datos es menor o igual al valor. Por último, el tercer cuartil, indica el 75% de los datos es menor o igual al valor.
+Pasos:
+
+1º Haremos una función general para que nos calcule el valor de los cuartiles. A esta función la llamaremos cuartiles y le pasaremos el parámetro suma, (recuerdo que es la variable que tiene los datos del DataFrame ordenados y la acumulación del número de votos).
+
+2º Inicializamos las variables e1 y e3 con el 1, al igual que q1 y q3, (q1 = cuartil 1, q3 = cuartil 3, el cuartil 2 no se calcula dado que este es igual que la mediana), con las siguientes fórmulas: N/4, 3N/4, respectivamente. La N es el número total de votos, por tanto, los 10000, lo dividiremos por ¼ para saber el 25% y entre ¾ para saber el 75%. 
+
+3º Contaremos cuántos valores son menores que q1, mediante e1 y lo mismo con q3 pero con e3.
+
+4º Esta función nos devuelve una lista con los valores de e1 y e3
+
+5º Q1: tan solo veremos el elemento que está en la fila e1 -1, dado que las filas en nuestro DataSet empiezan por cero, y columna 0, con la función .iloc[]
+
+6º Haremos lo mismo que con Q1, pero con Q3 y en vez de usar e1 usaremos e3.
+```
+#Cuartiles
+def cuartiles(suma):
+    e1 = 1
+    e3 = 1
+    q1 = (df['Numero-de-votos'].sum() * 1)/4
+    q3 = (df['Numero-de-votos'].sum() * 3)/4
+    
+    for i in suma:
+        if q1 < i:
+            pass
+        else:
+            e1 = e1 + 1
+        
+        if q3 < i:
+            pass
+        else:
+            e3 = e3 + 1 
+    return [e1, e3]
+
+
+ordenado = df.sort_values(by='Valoracion-pelicula')
+suma = ordenado['Numero-de-votos'].cumsum()
+Q = cuartiles(suma)
+
+#Q1
+Q1 = ordenado.iloc[Q[0] - 1, 0]
+print('El 25% de los votos tiene un valor inferior a ' + str(Q1))
+
+#Q2
+Q2 = mediana
+print('El 50% de los votos tiene un valor inferior a ' + str(Q2))
+
+#Q3
+Q3 = ordenado.iloc[Q[1] - 1, 0]
+print('El 75% de los votos tiene un valor inferior a ' + str(Q3))
+```
+
+Cuando le damos a ejecutar todo el código, obtendremos los siguientes datos estadísticos:
+```
+<<<
+La media es: 6.9
+La mediana es:6.9
+La moda es: 8.3
+La varianza es: 0.72
+La desviación típica es: 0.85
+El valor máximo es: 10.0
+El valor mínimo es: 0.0
+El 25% de los votos tiene un valor inferior a 6.3
+El 50% de los votos tiene un valor inferior a 6.9
+El 75% de los votos tiene un valor inferior a 7.5
+>>>
+```
+Y la siguiente gráfica:
 
