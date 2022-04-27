@@ -237,6 +237,44 @@ Q3 = ordenado.iloc[Q[1] - 1, 0]
 print('El 75% de los votos tiene un valor inferior a ' + str(Q3))
 ```
 
+# Gráfica
+Usaremos la función representacion con los parámetros: df, desviación típica, máximo, mínimo, media y varianza, para pintar un histograma de los datos, junto con la campana de Gauss.
+Pasos:
+
+1º Establecemos los valores del eje x e y para la campana de Gauss, la cual estará comprendida entre el máximo y el mínimo. Para representar el eje x usaremos la np.arange(min, max, 0.01), donde tenemos la librería NumPy y usaremos la función arange(), con el máximo, mínimo y el intervalo de los valores. El eje y se representa mediante una fórmula característica de la campana de Gauss: 1/(desviación típica  raíz(2Π))  e^(-(valores del eje x  - media )^2 / (2 varianza)
+
+2º Le indicamos que vamos a crear dos gráficas juntas y la dimensión de ellas.
+
+3º Vamos a indicarle la primera gráfica a representar, el histograma, mediante ax1. Para ello usaremos la función .hist() y le indicaremos dentro los valores que irán en el eje x, al igual que los valores del eje y asociados a él. 
+
+4º Usaremos la función .twinx() para indicarle que debe solapar el gráfico dos con el uno.
+
+5º El segundo gráfico es la campana de Gauss, donde debemos de indicarle los valores del eje x, los del y, el color, estilo y ancho de la curva. Usaremos la función .plot(), para ello.
+
+6º Este paso no sería estrictamente necesario. Ahora vamos a indicar la posición de la media, mediante .axline(), donde le pasaremos el valor de la media, color, estilo, ancho y nombre de dicha recta. Si queremos poner dicho valor en una posición específica usaremos .legend(loc=posición), la posición debe de ser el nombre del lugar donde queremos esa etiqueta.
+
+7º Antes de acabar, debemos escribir la función .show(), para que nos muestre en una pantalla el gráfico.
+
+```
+#Funciones
+#Histograma
+def representacion(df, desviacion_tipica, max, min, media, varianza):
+    x = np.arange(min, max, 0.01)
+    f = 1/(desviacion_tipica * np.sqrt(2*np.pi)) * np.exp(-(x - media) ** 2/(2 * varianza))
+    
+    fig, ax1 = plt.subplots()
+    plt.subplot(1,1,1)
+    ax1.hist(df['Valoracion-pelicula'])
+    ax2 = ax1.twinx()
+    ax2.plot(x, f, color = 'black', linestyle = 'dashed', linewidth=3)
+    plt.axvline(media, color='red', linestyle='dashed', linewidth=1,label = str(media))
+    plt.legend(loc='upper right')
+    plt.show()
+
+#Main
+#Representación 
+    representacion(df, desviacion_tipica, max, min, media, varianza)
+```
 Cuando le damos a ejecutar todo el código, obtendremos los siguientes datos estadísticos:
 ```
 <<<
@@ -253,3 +291,4 @@ El 75% de los votos tiene un valor inferior a 7.5
 >>>
 ```
 Y la siguiente gráfica:
+![peliculas](peliculas.jpg)
