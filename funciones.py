@@ -70,21 +70,18 @@ plt.show()
 def representacion(df, desviacion_tipica, max, min, media, varianza):
     x = np.arange(min, max, 0.01)
     f = 1/(desviacion_tipica * np.sqrt(2*np.pi)) * np.exp(-(x - media) ** 2/(2 * varianza))
-    f1 = (np.exp((-1/2) * ((x-media)/desviacion_tipica)**2))/np.sqrt(2 * np.pi * x * desviacion_tipica)
+    #f1 = (np.exp((-1/2) * ((x-media)/desviacion_tipica)**2))/np.sqrt(2 * np.pi * x * desviacion_tipica)
     
-    ax1 = plt.subplot()
+    fig, ax1 = plt.subplot()
+    plt.subplot(1,1,1)
+    ax1.plot(x, f, color = 'black', linestyle = 'dashed')
     ax2 = ax1.twinx()
-    ax1.plot(fig1)
-    ax2.plot(x, f1, color = 'pink', linestyle = 'dashed')
-    fig1= plt.hist(df['Valoracion-pelicula'])
+    ax2 = plt.hist(df['Valoracion-pelicula'])
+    
     plt.axvline(media, color='red', linestyle='dashed', linewidth=1,label = str(media))
     plt.legend(loc='upper right')
 
-    #b =  plt.plot(x, f1, color = 'pink', linestyle = 'dashed')
-    #a =  plt.plot(x, f, color = 'black', linestyle = 'dashed')
-    
-    '''  plt.subplot(1,1,1)
-    plt.style.use('seaborn')'''
+
     
     #plt.plot(x, f, color = 'black', linestyle = 'dashed')
     #axis = df.plot.bar(x='Valoracion-pelicula', rot = 0)
