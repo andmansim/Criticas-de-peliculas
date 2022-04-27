@@ -109,3 +109,17 @@ def calculo_mediana():
 mediana = calculo_mediana()    
 print('La mediana es:' + str(mediana))
 ```
+# Moda
+La moda, es el valor que más se repite de todos nuestros datos. Para calcularlo vamos a ver el máximo de número de votos y hallarnos su valoración correspondiente, seguiremos el mismo procedimiento que la del cálculo de la mediana.
+```
+#moda
+a = 1
+for i in df['Numero-de-votos']:
+    if i == df['Numero-de-votos'].max():
+        b = a
+    else: 
+        a = a + 1
+moda = df.iloc[b-1,0]
+print('La moda es: ' + str(moda))
+```
+
