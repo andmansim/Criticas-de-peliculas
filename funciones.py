@@ -72,18 +72,14 @@ def representacion(df, desviacion_tipica, max, min, media, varianza):
     f = 1/(desviacion_tipica * np.sqrt(2*np.pi)) * np.exp(-(x - media) ** 2/(2 * varianza))
     #f1 = (np.exp((-1/2) * ((x-media)/desviacion_tipica)**2))/np.sqrt(2 * np.pi * x * desviacion_tipica)
     
-    fig, ax1 = plt.subplot()
+    fig, ax1 = plt.subplots()
     plt.subplot(1,1,1)
-    ax1.plot(x, f, color = 'black', linestyle = 'dashed')
+    ax2.plot(x, f, color = 'black', linestyle = 'dashed', linewidth=3)
     ax2 = ax1.twinx()
-    ax2 = plt.hist(df['Valoracion-pelicula'])
+    ax1 = plt.hist(df['Valoracion-pelicula'])
     
     plt.axvline(media, color='red', linestyle='dashed', linewidth=1,label = str(media))
     plt.legend(loc='upper right')
 
-
-    
-    #plt.plot(x, f, color = 'black', linestyle = 'dashed')
-    #axis = df.plot.bar(x='Valoracion-pelicula', rot = 0)
     plt.show()
 
