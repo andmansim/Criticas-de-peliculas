@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sb
 
 
 #media
@@ -70,16 +71,13 @@ plt.show()
 def representacion(df, desviacion_tipica, max, min, media, varianza):
     x = np.arange(min, max, 0.01)
     f = 1/(desviacion_tipica * np.sqrt(2*np.pi)) * np.exp(-(x - media) ** 2/(2 * varianza))
-    #f1 = (np.exp((-1/2) * ((x-media)/desviacion_tipica)**2))/np.sqrt(2 * np.pi * x * desviacion_tipica)
     
     fig, ax1 = plt.subplots()
     plt.subplot(1,1,1)
-    ax2.plot(x, f, color = 'black', linestyle = 'dashed', linewidth=3)
+    ax1.hist(df['Valoracion-pelicula'])
     ax2 = ax1.twinx()
-    ax1 = plt.hist(df['Valoracion-pelicula'])
-    
+    ax2.plot(x, f, color = 'black', linestyle = 'dashed', linewidth=3)
     plt.axvline(media, color='red', linestyle='dashed', linewidth=1,label = str(media))
     plt.legend(loc='upper right')
-
     plt.show()
 
