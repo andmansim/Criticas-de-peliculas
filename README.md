@@ -122,4 +122,25 @@ for i in df['Numero-de-votos']:
 moda = df.iloc[b-1,0]
 print('La moda es: ' + str(moda))
 ```
+# Varianza y desviación típica
+La varianza es una medida de dispersión que representa cuanto varían los datos respecto a la media. Se calcula de la siguiente manera: 〖∑▒〖(valores(valoración películas)-〗 media)〗^2/n A cada valor de la valoración se le resta la media y se le eleva al cuadrado. Después se suman todos ellos y los dividimos entre el número total de valores.
+La desviación típica es lo mismo que la varianza, pero en vez de ser en valores tan globales, es respecto a algunos en concreto. Para calcularla solo hay que hacer la raíz de la varianza. 
+Pasos: 
+
+1º Es aplicar la fórmula y le debemos multiplicar a cada valoración el número de votos que tiene.
+
+2º Redondeamos al segundo decimal
+```
+# varianza
+varianza = ((df['Numero-de-votos'] * ((df['Valoracion-pelicula'] - media)**2)).sum()/(df['Numero-de-votos'].sum()))
+varianza = round(varianza, 2)
+print('La varianza es: ' + str(varianza))
+```
+Con la desviación típica tan solo hacemos la raíz cuadrada de la varianza y lo redondeamos al segundo decimal.
+```
+#desviación típica
+desviacion_tipica = varianza ** (1/2)
+desviacion_tipica = round(desviacion_tipica, 2)
+print('La desviación típica es: ' + str(desviacion_tipica))
+```
 
