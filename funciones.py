@@ -67,7 +67,17 @@ plt.plot(x, f, color = 'black', linestyle = 'dashed')
 plt.show()
 '''
 #Histograma
-def representacion(df):
-    axis = df.plot.bar(x='Valoracion-pelicula', rot = 0)
+def representacion(df, desviacion_tipica, max, min, media, varianza):
+    plt.subplot(3,3,1)
+    plt.hist('Histograma')
+    
+    '''#plt.subplot(2,2,1)
+    plt.style.use('seaborn')
+    x = np.arange(min, max, 0.01)
+    f = 1/(desviacion_tipica * np.sqrt(2*np.pi)) * np.exp(-(x - media) ** 2/(2 * varianza))
+
+    plt.subplot(2,2,1)
+    plt.plot(x, f, color = 'black', linestyle = 'dashed')'''
+    #axis = df.plot.bar(x='Valoracion-pelicula', rot = 0)
     plt.show()
     

@@ -58,4 +58,4 @@ if __name__ == '__main__':
     print('El 75% de los votos tiene un valor inferior a ' + str(Q3))
 
     #Representación 
-    representacion(df)
+    representacion(df, desviacion_tipica, max, min, media, varianza)
